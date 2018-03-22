@@ -19,6 +19,16 @@ var imageCodeId = ""
 var preImageCodeId = ""
 // 生成一个图片验证码的编号，并设置页面中图片验证码img标签的src属性
 function generateImageCode() {
+    // 1. 生成验证码的编码
+    imageCodeId = generateUUID()
+    // 2. 设置验证码的标签的src
+    var url = "/api/v1.0/imagecode?cur=" + imageCodeId
+    // 3. 设置图片验证码标签对应的src
+    $(".image-code>image").attr("src", url)
+
+
+
+
     imageCodeId = generateUUID()
     var imageCodeUrl = "/api/v1.0/imagecode?cur=" + imageCodeId + "&pre=" + preImageCodeId
     $(".image-code>img").attr("src", imageCodeUrl)
