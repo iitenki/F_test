@@ -70,7 +70,7 @@ def create_app(config_name):
     # 在注册时导入, 否则会循环导入
     from web_pro.api_1_0 import api
     # 注册蓝图
-    app.register_blueprint(api)
+    app.register_blueprint(api, url_prefix="/api/v1.0")
 
     # 注册访问静态文件蓝图
     from web_pro.web_html import w_html
