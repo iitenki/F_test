@@ -2,14 +2,18 @@
 
 from flask import Blueprint, current_app
 
+
+
 # 创建静态文件访问的蓝图
 w_html = Blueprint("whtml", __name__)
 
 
 # 定义静态文件访问的路由
-@w_html.route("/<file_name>")
+@w_html.route("/<re('.*'):file_name>")
 def get_html_file(file_name):
 
+    if not file_name:
+        file_name = "index.html"
     if file_name != "favicon.ico":
 
         file_name = "html/" + file_name

@@ -9,6 +9,8 @@ from flask_session import Session
 import logging
 from logging.handlers import RotatingFileHandler
 from config import config
+from utils.common import RegexConverter
+
 
 
 # 方法一: 先创建为None, 再在类中定义时设为全局变量
@@ -60,6 +62,10 @@ def create_app(config_name):
 
     # 集成session
     Session(app)
+
+    #将自定义的转换器添加到路由视图映射中
+    app.url_map.converters["re"] = RegexConverter
+
 
     # 在注册时导入, 否则会循环导入
     from web_pro.api_1_0 import api
