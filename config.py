@@ -31,3 +31,18 @@ class Config(object):
     PERMANENT_SESSION_LIFETIME = 86400
 
 
+class DevelopementConfig(Config):
+    """开发阶段配置"""
+    # 开启调试模式
+    DEBUG = True
+
+
+class ProductionConfig(Config):
+    """生产环境下所需的配置"""
+    pass
+
+
+config = {
+    "developement": DevelopementConfig,
+    "production": ProductionConfig
+}

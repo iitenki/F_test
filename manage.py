@@ -7,9 +7,10 @@ from flask_script import Manager
 from flask_migrate import Migrate, MigrateCommand
 
 from config import Config
-from web_pro import app, db, redis_store
+from web_pro import create_app, db, redis_store
 
 
+app = create_app("developement")
 # 使用命令行运行
 manager = Manager(app)
 # 集成数据库迁移
