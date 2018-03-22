@@ -18,11 +18,7 @@ Migrate(app, db)
 manager.add_command("db", MigrateCommand)
 
 
-@app.route("/index", methods=["GET", "POST"])
-def index():
-    session["usersession"] = "asession"
-    redis_store.set("name", "one")
-    return "index"
+
 
 if __name__ == '__main__':
     # app.run(host="0.0.0.0")

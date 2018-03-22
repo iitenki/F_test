@@ -41,3 +41,9 @@ def create_app(config_name):
 
     # 集成session
     Session(app)
+
+    # 在注册时导入, 否则会循环导入
+    from web_pro.api_1_0 import api
+    # 注册蓝图
+    app.register_blueprint(api)
+    return app
