@@ -65,4 +65,9 @@ def create_app(config_name):
     from web_pro.api_1_0 import api
     # 注册蓝图
     app.register_blueprint(api)
+
+    # 注册访问静态文件蓝图
+    from web_pro.web_html import w_html
+    app.register_blueprint(w_html)
+
     return app
