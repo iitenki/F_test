@@ -9,6 +9,8 @@ from flask_migrate import Migrate, MigrateCommand
 from config import Config
 from web_pro import create_app, db, redis_store
 
+# 迁移时需要导入models
+from web_pro import models
 
 app = create_app("developement")
 # 使用命令行运行
