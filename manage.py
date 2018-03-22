@@ -5,6 +5,8 @@ from flask import Flask, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_wtf import CSRFProtect
 from flask_session import Session
+from flask_script import Manager
+from flask_migrate import Migrate, MigrateCommand
 
 
 class Config(object):
@@ -54,7 +56,11 @@ csrf = CSRFProtect(app)
 # 集成session
 Session(app)
 
-
+# 使用命令行运行
+manager = Manager(app)
+# 集成数据库迁移
+Migrate(app, db)
+manager.add_command("db", MigrateCommand)
 
 
 @app.route("/index", methods=["GET", "POST"])
@@ -64,4 +70,5 @@ def index():
     return "index"
 
 if __name__ == '__main__':
-    app.run(host="0.0.0.0")
+    # app.run(host="0.0.0.0")
+    manager.run()
